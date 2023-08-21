@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int esFechaValida(const char fecha[]){
+    int numDia, numMes, numAnio;
+
+    // Verifico si la cadena contiene solo dígitos y barras y si tiene el formato adecuado:
+    if (strspn(fecha, "1234567890/") == 10 && fecha[2] == '/' && fecha[5] == '/'){
+        // atoi(variable + n) permite comenzar la conversión desde el carácter en la posición "n" de la cadena "variable":
+        numDia = atoi(fecha);   // atoi(fecha) == atoi(fecha + 0)
+        numMes = atoi(fecha + 3);
+        numAnio = atoi(fecha + 6);  
+
+        if (numDia >= 1 && numDia <= 30 && numMes >= 1 && numMes <= 12 && numAnio <= 2023) {
+            return 1;   // Fecha válida
+        }
+    } else {
+        return 0;   //  Fecha inválida o formato incorrecto
+    }
+}
